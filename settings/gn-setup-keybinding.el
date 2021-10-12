@@ -1,6 +1,6 @@
 (use-package general
-    :config
-    (general-evil-setup))
+  :config
+  (general-evil-setup))
 
 (use-package evil
   :init
@@ -9,36 +9,50 @@
   (setq evil-want-C-u-scroll t)
   (setq evil-want-C-i-jump nil)
   :config
-  (evil-mode 1)
+  (evil-mode 1))
+
+(use-package evil-collection
+  :after evil
+  :config
+  (evil-collection-init))
+
+(general-create-definer general-nimap :states '(normal insert))
+
+(general-nvmap
+  ;; Remove unnecessary keybindings
+  ;;"SPC" nil
+  ;;"TAB" nil
+  ;;"RET" nil
+
+  ;; Always use visual motion
+  "j" 'evil-next-visual-line
+  "k" 'evil-previous-visual-line
   )
 
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
+(general-imap 'global
+  "C-g" 'evil-normal-state)
 
-(general-def '(normal visual insert)
-  "<escape>" 'keyboard-escape-quit)
-
-;; leader keys
 (general-create-definer gn-leader-nvmap
   :states '(normal visual)
-  :prefix "SPC")
-
+  :prefix "SPC"
+  :keymaps 'override)
 (general-create-definer gn-leader-nmap
   :states 'normal
-  :prefix "SPC")
-
+  :prefix "SPC"
+  :keymaps 'override)
 (general-create-definer gn-leader-vmap
   :states 'visual
-  :prefix "SPC")
-
+  :prefix "SPC"
+  :keymaps 'override)
 (gn-leader-nmap
   ":" 'execute-extended-command
-
-  ; Org commands
+  
+  ;; Org commands
   "a" 'org-agenda
   "c" 'org-capture
 
-  ; File commands
-  "f" '(:ignore b :which-key "buffer")
+  ;; File commands
+  "f" '(:ignore b :which-key "file")
   "fs" 'save-buffer
   "fq" 'kill-current-buffer
   "fe" 'switch-to-buffer
@@ -46,7 +60,7 @@
   "fo" 'find-file
   "fO" 'find-file-other-window
 
-  ; Window commands
+  ;; Window commands
   "wq" 'evil-window-delete
   "ww" 'delete-other-windows
   "h" 'evil-window-left
@@ -58,52 +72,18 @@
   "j" 'evil-window-down
   "J" 'evil-window-move-very-bottom
 
-  ; Modes
+  ;; Modes
   "m" '(:ignore m :which-key "modes")
   "mw" 'whitespace-mode
 
-  "w" '(:ignore w :which-key "workflow")
-  ;"wc" current-todo
-  "wt" 'gn-workflow-open-todo
-  "wi" 'gn-workflow-open-inbox
-  "wr" 'gn-workflow-open-reference
+  ;;"w" '(:ignore w :which-key "workflow")
+  ;;"wc" current-todo
+  ;;"wt" 'gn-workflow-open-todo
+  ;;"wi" 'gn-workflow-open-inbox
+  ;;"wr" 'gn-workflow-open-reference
   )
 
-(general-def '(normal insert) emacs-lisp-mode-map
-  "<s-return>" 'eval-defun)
-
-(general-def '(visual)  emacs-lisp-mode-map
-  "<s-return>" 'eval-last-sexp)
-
-;; Vim keybindings
-(general-imap 'global
-  "C-g" 'evil-normal-state)
-
-(defun gn-evil-scroll-down ()
-  "Scroll down half screen and center screen"
-  (interactive)
-  (evil-scroll-down nil)
-  (evil-scroll-line-to-center (line-number-at-pos)))
-
-(defun gn-evil-scroll-up ()
-  "Scroll up half screen and center screen."
-  (interactive)
-  (evil-scroll-up nil)
-  (evil-scroll-line-to-center (line-number-at-pos)))
-
-(general-nvmap
-  "SPC" nil
-  "TAB" nil
-  "RET" nil
-
-  ;; Always use visual motion
-  "j" 'evil-next-visual-line
-  "k" 'evil-previous-visual-line
-  )
-
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
+(general-def 'global
+  "<escape>" 'keyboard-escape-quit)
 
 (provide 'gn-setup-keybinding)

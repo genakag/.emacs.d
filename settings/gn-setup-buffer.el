@@ -22,5 +22,16 @@
 (set-keyboard-coding-system 'utf-8)
 (setq default-buffer-file-coding-system 'utf-8)
 
+(setq-default indent-tabs-mode nil)
+
+(column-number-mode)
+(global-display-line-numbers-mode t)
+
+;;; turn the alarm sound off
+(setq ring-bell-function 'ignore)
+
+;;; scroll line by line
+(setq mouse-wheel-scroll-amount '(1 ((shift) . 1)))
+
 (provide 'gn-setup-buffer)
 
