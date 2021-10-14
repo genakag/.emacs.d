@@ -1,3 +1,6 @@
+;; Keep emacs Custom-settings in separate file
+(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+(load custom-file)
 
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
@@ -45,20 +48,3 @@
   (define-key (current-global-map) [remap find-file] 'counsel-find-file)
   (define-key (current-global-map) [remap describe-function] 'counsel-describe-function)
   (define-key (current-global-map) [remap describe-variable] 'counsel-describe-variable))
-
-
-
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(magit valign names-dev names evil-collection evil general use-package)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
