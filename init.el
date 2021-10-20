@@ -1,5 +1,9 @@
-;; Keep emacs Custom-settings in separate file
-(setq custom-file (expand-file-name "custom.el" user-emacs-directory))
+;; My variables
+(defvar gn-settings-path (expand-file-name "settings" user-emacs-directory)
+  "Path to the folder that contains the emacs settings.")
+
+;; Specify file for emacs custom settings
+(setq custom-file (expand-file-name "custom.el" gn-settings-path))
 (load custom-file)
 
 ;; Are we on a mac?
@@ -14,37 +18,14 @@
 
 (require 'gn-setup-package)
 (require 'gn-setup-buffer)
+(require 'gn-setup-minibuffer)
 (require 'gn-setup-keybinding)
 (require 'gn-setup-appearance)
 
 ;; Languages
 (require 'gn-setup-elisp)
-(require 'gn-setup-org)
 (require 'gn-setup-magit)
+(require 'gn-setup-org)
+(require 'gn-setup-plantuml)
 
-;; Display available keybindings
-(use-package which-key
-  :init (which-key-mode)
-  :diminish which-key-mode
-  :config
-  (setq which-key-idle-delay 0.3))
 
-(use-package ivy
-  :bind (:map ivy-minibuffer-map
-              ("RET" . ivy-alt-done)
-              ("TAB" . ivy-insert-current)
-              ("C-j" . ivy-next-line)
-              ("C-k" . ivy-previous-line))
-  :config
-  (setq ivy-use-virtual-buffers t)
-  (setq ivy-count-format "(%d/%d) ")
-  (setq ivy-height 20)
-  (ivy-mode t))
-
-(use-package counsel
-  :after ivy
-  :config
-  (define-key (current-global-map) [remap execute-extended-command] 'counsel-M-x)
-  (define-key (current-global-map) [remap find-file] 'counsel-find-file)
-  (define-key (current-global-map) [remap describe-function] 'counsel-describe-function)
-  (define-key (current-global-map) [remap describe-variable] 'counsel-describe-variable))

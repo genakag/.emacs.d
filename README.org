@@ -1,1 +1,27 @@
 * My .emacs.d folder
+
+** Directory Structure
+
+#+begin_src plantuml
+  title .emacs.d Directory Structure
+
+  folder .emacs.d {
+          file initFile [
+          init.el
+          --
+          Initialization file
+          ]
+          folder settings [
+          settings
+          --
+          emacs settings
+          ] 
+          folder custom [
+          custom
+          --
+          contains emacs lisp files
+          ]
+  }
+#+end_src
+
+** Keybinding

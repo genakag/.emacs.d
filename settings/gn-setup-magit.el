@@ -6,7 +6,8 @@
   (general-nmap magit-mode-map
     "<escape>" 'evil-normal-state)
   (gn-leader-nvmap
-    "v" 'magit-list-repositories)
+    "om" 'magit-list-repositories)
   )
 
 (provide 'gn-setup-magit)
+
