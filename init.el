@@ -3,8 +3,11 @@
   "Path to the folder that contains the emacs settings.")
 
 ;; Specify file for emacs custom settings
-(setq custom-file (expand-file-name "custom.el" gn-settings-path))
-(load custom-file)
+(let ((custom-file-path (expand-file-name "custom.el" gn-settings-path)))
+  (when (not (file-exists-p custom-file-path))
+    (with-temp-buffer (write-file custom-file-path)))
+  (setq custom-file custom-file-path)
+  (load custom-file))
 
 ;; Are we on a mac?
 (setq is-mac (equal system-type 'darwin))
@@ -12,11 +15,11 @@
 ;; Set up load path
 (add-to-list 'load-path (expand-file-name "settings" user-emacs-directory))
 
+(require 'gn-setup-package)
 (use-package names)
 (require 'names)
 (require 'names-dev)
 
-(require 'gn-setup-package)
 (require 'gn-setup-buffer)
 (require 'gn-setup-minibuffer)
 (require 'gn-setup-keybinding)
@@ -24,8 +27,11 @@
 
 ;; Languages
 (require 'gn-setup-elisp)
+(require 'gn-setup-coding-stuff)
+
 (require 'gn-setup-magit)
 (require 'gn-setup-org)
 (require 'gn-setup-plantuml)
 
+(require 'gn-setup-clojure)
 
