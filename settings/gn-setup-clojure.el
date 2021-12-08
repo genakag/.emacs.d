@@ -3,6 +3,8 @@
   (add-hook 'clojure-mode-hook #'cider-mode))
 (use-package clj-refactor
   :config
+  (setq cljr-warn-on-eval nil)
+  (setq nrepl-sync-request-timeout nil)
   (add-hook 'clojure-mode-hook
             (lambda ()
               (progn

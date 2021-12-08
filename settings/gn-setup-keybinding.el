@@ -48,8 +48,8 @@
   ":" 'execute-extended-command
   
   ;; Org commands
-  "a" 'org-agenda
-  "c" 'org-capture
+  ;"a" 'org-agenda
+  ;"c" 'org-capture
 
   ;; File commands
   "f" '(:ignore b :which-key "file")
@@ -61,8 +61,8 @@
   "fO" 'find-file-other-window
 
   ;; Window commands
-  "wq" 'evil-window-delete
-  "ww" 'delete-other-windows
+  "q" 'evil-window-delete
+  "Q" 'delete-other-windows
   "h" 'evil-window-left
   "H" 'evil-window-move-far-left
   "l" 'evil-window-right
