@@ -1,4 +1,6 @@
 (use-package org)
+(require 'ox)
+(setq org-export-async-debug nil)
 
 (setq org-return-follows-link t)
 

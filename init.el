@@ -15,6 +15,9 @@
 ;; Set up load path
 (add-to-list 'load-path (expand-file-name "settings" user-emacs-directory))
 
+;; Set up load path for genenakagaki.com
+(add-to-list 'load-path "/Users/genenakagaki/genenakagaki.com/export")
+
 (require 'gn-setup-package)
 (use-package names)
 (require 'names)
@@ -35,3 +38,4 @@
 
 (require 'gn-setup-clojure)
 
+(require 'gn-setup-genenakagaki-export)
