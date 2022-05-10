@@ -13,11 +13,28 @@
 
 (use-package org-roam
   :config
+  (require 'org)
   (setq org-roam-directory (file-truename "~/myknowledge/org"))
   (org-roam-db-autosync-mode)
   (setq org-roam-completion-everywhere t)
+  (setq org-roam-dailies-directory "daily/")
+  (setq org-roam-dailies-capture-templates
+        '(("d" "default" entry
+         "* %?"
+         :target (file+head "%<%Y-%m-%d>.org"
+                            "#+title: %<%Y-%m-%d>\n"))))
+  )
+(use-package org-roam-ui
+  :config
+  (require 'org-roam)
   )
 
+(use-package org-download
+  :after org
+  :bind
+  (:map org-mode-map
+        (("s-Y" . org-download-screenshot)
+         ("s-y" . org-download-clipboard))))
 
 (general-nimap org-mode-map
   "<s-return>" 'org-ctrl-c-ctrl-c)
@@ -67,11 +84,32 @@
   "K" 'outline-move-subtree-up
   "J" 'outline-move-subtree-down
 
+ )
+
+(general-create-definer gn-roam-nvmap
+  :states '(normal visual)
+  :prefix "<return>"
+  :keymaps 'override)
+(general-create-definer gn-roam-nmap
+  :states 'normal
+  :prefix "<return>"
+  :keymaps 'override)
+(general-create-definer gn-roam-vmap
+  :states 'visual
+  :prefix "<return>"
+  :keymaps 'override)
+
+(gn-roam-nvmap
   ; Org Roam
-  "r" '(:ignore r :which-key "org roam") 
-  "rf" 'org-roam-node-find
-  "ri" 'org-roam-node-insert
-  "rt" 'org-roam-buffer-toggle
-  )
+  "f" 'org-roam-node-find
+  "i" 'org-roam-node-insert
+  "t" 'org-roam-buffer-toggle
+  "g" 'org-roam-ui-mode
+  "r" '(:ignore rr :which-key "org roam reference") 
+  "ra" 'org-roam-ref-add
+  "rr" 'org-roam-ref-remove
+  "d" '(:ignore d :which-key "dailies")
+  "dt" 'org-roam-dailies-goto-today
+ )
 
 (provide 'gn-setup-org)

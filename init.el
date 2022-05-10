@@ -40,4 +40,5 @@
 (require 'gn-setup-clojure)
 (require 'gn-setup-sql)
 
-(require 'gn-setup-blog-genenakagaki)
+;(require 'gn-setup-blog-genenakagaki)
+
