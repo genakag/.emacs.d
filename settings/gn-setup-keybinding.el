@@ -32,6 +32,10 @@
 (general-imap 'global
   "C-g" 'evil-normal-state)
 
+(general-def 'global
+  "<escape>" 'keyboard-escape-quit
+  "C-<tab>" 'completion-at-point)
+
 (general-create-definer gn-leader-nvmap
   :states '(normal visual)
   :prefix "SPC"
@@ -61,16 +65,16 @@
   "fO" 'find-file-other-window
 
   ;; Window commands
-  "q" 'evil-window-delete
-  "Q" 'delete-other-windows
-  "h" 'evil-window-left
-  "H" 'evil-window-move-far-left
-  "l" 'evil-window-right
-  "L" 'evil-window-move-far-right
-  "k" 'evil-window-up
-  "K" 'evil-window-move-very-top
-  "j" 'evil-window-down
-  "J" 'evil-window-move-very-bottom
+  "wq" 'evil-window-delete
+  "wQ" 'delete-other-windows
+  "wh" 'evil-window-left
+  "wH" 'evil-window-move-far-left
+  "wl" 'evil-window-right
+  "wL" 'evil-window-move-far-right
+  "wk" 'evil-window-up
+  "wK" 'evil-window-move-very-top
+  "wj" 'evil-window-down
+  "wJ" 'evil-window-move-very-bottom
 
   ;; Modes
   "m" '(:ignore m :which-key "modes")
@@ -83,7 +87,5 @@
   ;;"wr" 'gn-workflow-open-reference
   )
 
-(general-def 'global
-  "<escape>" 'keyboard-escape-quit)
 
 (provide 'gn-setup-keybinding)

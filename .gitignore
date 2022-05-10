@@ -4,3 +4,5 @@ transient
 recentf
 custom.el
 auto-save-list
+org-roam.db
+projectile-bookmarks.eld

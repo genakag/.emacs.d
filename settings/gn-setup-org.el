@@ -11,6 +11,14 @@
                            (valign-mode)
                            (org-indent-mode)))
 
+(use-package org-roam
+  :config
+  (setq org-roam-directory (file-truename "~/myknowledge/org"))
+  (org-roam-db-autosync-mode)
+  (setq org-roam-completion-everywhere t)
+  )
+
+
 (general-nimap org-mode-map
   "<s-return>" 'org-ctrl-c-ctrl-c)
 
@@ -48,20 +56,22 @@
   "nn" 'org-narrow-to-subtree
   "nw" 'widen
   "/" 'org-sparse-tree
+
+  ; Navigation
+  "j" 'org-next-visible-heading
+  "k" 'org-previous-visible-heading
+
+  ; Heading promotion, demotion
+  "H" 'org-metaleft
+  "L" 'org-metaright
+  "K" 'outline-move-subtree-up
+  "J" 'outline-move-subtree-down
+
+  ; Org Roam
+  "r" '(:ignore r :which-key "org roam") 
+  "rf" 'org-roam-node-find
+  "ri" 'org-roam-node-insert
+  "rt" 'org-roam-buffer-toggle
   )
-
-(general-def
- :states '(normal visual insert)
- :keymaps 'org-mode-map
- "C-h" 'org-metaleft
- "C-l" 'org-metaright
- "C-k" 'outline-move-subtree-up
- "C-j" 'outline-move-subtree-down
- )
-
-(general-nvmap
-  :keymaps 'org-mode-map
-  "J" 'org-next-visible-heading
-  "K" 'org-previous-visible-heading)
 
 (provide 'gn-setup-org)
