@@ -9,7 +9,8 @@
 (add-hook 'org-mode-hook (lambda ()
                            ;; make the lines in the buffer wrap around the edges of the screen.
                            (valign-mode)
-                           (org-indent-mode)))
+                           (org-indent-mode)
+                           (flyspell-mode 1)))
 
 (use-package org-roam
   :config
@@ -88,19 +89,19 @@
 
 (general-create-definer gn-roam-nvmap
   :states '(normal visual)
-  :prefix "<return>"
+  :prefix "SPC SPC"
   :keymaps 'override)
 (general-create-definer gn-roam-nmap
   :states 'normal
-  :prefix "<return>"
+  :prefix "SPC SPC"
   :keymaps 'override)
 (general-create-definer gn-roam-vmap
   :states 'visual
-  :prefix "<return>"
+  :prefix "SPC SPC"
   :keymaps 'override)
 
 (gn-roam-nvmap
-  ; Org Roam
+  ; Org Roa m
   "f" 'org-roam-node-find
   "i" 'org-roam-node-insert
   "t" 'org-roam-buffer-toggle
@@ -108,8 +109,7 @@
   "r" '(:ignore rr :which-key "org roam reference") 
   "ra" 'org-roam-ref-add
   "rr" 'org-roam-ref-remove
-  "d" '(:ignore d :which-key "dailies")
-  "dt" 'org-roam-dailies-goto-today
+  "d" 'org-roam-dailies-goto-today
  )
 
 (provide 'gn-setup-org)
