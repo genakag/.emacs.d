@@ -1,5 +1,8 @@
-(use-package org)
-(require 'ox)
+(use-package org
+  :config
+  (require 'ox)
+  (setq org-tag-alist '(("noexport" . n))))
+
 (setq org-export-async-debug nil)
 
 (setq org-return-follows-link t)
@@ -15,16 +18,39 @@
 (use-package org-roam
   :config
   (require 'org)
-  (setq org-roam-directory (file-truename "~/myknowledge/org"))
+  (require 'org-roam-export)
+  (setq org-roam-directory (file-truename "~/myknowledge"))
   (org-roam-db-autosync-mode)
   (setq org-roam-completion-everywhere t)
-  (setq org-roam-dailies-directory "daily/")
+  (setq org-roam-capture-templates
+        '(("d" "default"
+           plain "%?"
+           :target (file+head "./node/${slug}.org" "#+title: ${title}")
+           )
+          ("e" "English blog post"
+           plain "%?"
+           :target (file+head "./blog/en/${slug}.org" "
+#+language: en 
+#+title: ${title}
+#+description: ${title}
+"))
+          ("j" "Japanese blog post"
+           plain "%?"
+           :target (file+head "./blog/jp/${slug}.org" "
+#+language: ja 
+#+title: ${title}
+#+description: ${title}
+"))))
+  (setq org-roam-dailies-directory "daily")
   (setq org-roam-dailies-capture-templates
-        '(("d" "default" entry
-         "* %?"
-         :target (file+head "%<%Y-%m-%d>.org"
-                            "#+title: %<%Y-%m-%d>\n"))))
-  )
+        '(("d" "default"
+           entry "* %?"
+           :target (file+head "%<%Y-%m-%d>.org"
+                              "
+#+title: %<%Y-%m-%d>
+")))))
+
+
 (use-package org-roam-ui
   :config
   (require 'org-roam)
@@ -32,10 +58,14 @@
 
 (use-package org-download
   :after org
+  :config
+  (setq org-download-heading-lvl nil)
+  (setq-default org-download-image-dir (concat org-roam-directory "/images"))
   :bind
   (:map org-mode-map
         (("s-Y" . org-download-screenshot)
          ("s-y" . org-download-clipboard))))
+
 
 (general-nimap org-mode-map
   "<s-return>" 'org-ctrl-c-ctrl-c)
@@ -111,5 +141,17 @@
   "rr" 'org-roam-ref-remove
   "d" 'org-roam-dailies-goto-today
  )
+
+;; I encountered the following message when attempting
+;; to export data:
+;;
+;; "org-export-data: Unable to resolve link: FILE-ID"
+(defun gn/force-org-rebuild-cache ()
+  "Rebuild the `org-mode' and `org-roam' cache."
+  (interactive)
+  (org-id-update-id-locations)
+  (org-roam-db-clear-all)
+  (org-roam-db-sync)
+  (org-roam-update-org-id-locations))
 
 (provide 'gn-setup-org)

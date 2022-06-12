@@ -9,5 +9,10 @@
     "om" 'magit-list-repositories)
   )
 
+; Put this in custom file
+;(setq magit-repository-directories
+;      '(("~/.emacs.d" . 0)
+;        ("~/myknowledge" . 0)))
+
 (provide 'gn-setup-magit)
 
