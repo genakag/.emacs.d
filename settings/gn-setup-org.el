@@ -26,21 +26,26 @@
         '(("d" "default"
            plain "%?"
            :target (file+head "./node/${slug}.org" "#+title: ${title}")
-           )
+           :immediate-finish
+           :jump-to-captured)
           ("e" "English blog post"
            plain "%?"
-           :target (file+head "./blog/en/${slug}.org" "
+           :target (file+head "./en/blog/${slug}.org" "
 #+language: en 
 #+title: ${title}
 #+description: ${title}
-"))
+")
+           :immediate-finish
+           :jump-to-captured)
           ("j" "Japanese blog post"
            plain "%?"
-           :target (file+head "./blog/jp/${slug}.org" "
+           :target (file+head "./ja/blog/${slug}.org" "
 #+language: ja 
 #+title: ${title}
 #+description: ${title}
-"))))
+")
+           :immediate-finish
+           :jump-to-captured)))
   (setq org-roam-dailies-directory "daily")
   (setq org-roam-dailies-capture-templates
         '(("d" "default"

@@ -11,7 +11,8 @@
               ("RET" . ivy-alt-done)
               ("TAB" . ivy-insert-current)
               ("C-j" . ivy-next-line)
-              ("C-k" . ivy-previous-line))
+              ("C-k" . ivy-previous-line)
+              ("<s-return>" . ivy-immediate-done))
   :config
   (setq ivy-use-virtual-buffers t)
   (setq ivy-count-format "(%d/%d) ")
