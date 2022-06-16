@@ -30,11 +30,12 @@
   )
 
 (general-imap 'global
-  "C-g" 'evil-normal-state)
+  "C-g" 'evil-normal-state
+  "<tab>" 'completion-at-point)
 
 (general-def 'global
   "<escape>" 'keyboard-escape-quit
-  "C-<tab>" 'completion-at-point)
+  )
 
 (general-create-definer gn-leader-nvmap
   :states '(normal visual)

@@ -19,7 +19,7 @@
   :config
   (require 'org)
   (require 'org-roam-export)
-  (setq org-roam-directory (file-truename "~/myknowledge"))
+  (setq org-roam-directory "~/myknowledge/roam")
   (org-roam-db-autosync-mode)
   (setq org-roam-completion-everywhere t)
   (setq org-roam-capture-templates
