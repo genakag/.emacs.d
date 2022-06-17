@@ -23,6 +23,7 @@
   (org-roam-db-autosync-mode)
   (setq org-roam-completion-everywhere t)
   (setq org-roam-capture-templates
+
         '(("d" "default"
            plain "%?"
            :target (file+head "./node/${slug}.org" "#+title: ${title}")
@@ -30,7 +31,7 @@
            :jump-to-captured)
           ("e" "English blog post"
            plain "%?"
-           :target (file+head "./en/blog/${slug}.org" "
+           :target (file+head "./en/${slug}.org" "
 #+language: en 
 #+title: ${title}
 #+description: ${title}
@@ -39,7 +40,7 @@
            :jump-to-captured)
           ("j" "Japanese blog post"
            plain "%?"
-           :target (file+head "./ja/blog/${slug}.org" "
+           :target (file+head "./ja/${slug}.org" "
 #+language: ja 
 #+title: ${title}
 #+description: ${title}
