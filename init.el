@@ -16,7 +16,7 @@
 (add-to-list 'load-path (expand-file-name "settings" user-emacs-directory))
 
 ;; Set up load path for genenakagaki.com
-(add-to-list 'load-path "~/myknowledge/publish")
+(add-to-list 'load-path "~/myknowledge")
 
 (require 'gn-setup-package)
 (use-package names)
@@ -39,5 +39,5 @@
 (require 'gn-setup-clojure)
 (require 'gn-setup-sql)
 
-(require 'gn-setup-blog-genenakagaki)
+(require 'gn-setup-org-roam-publish)
 
