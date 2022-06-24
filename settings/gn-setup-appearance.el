@@ -37,4 +37,6 @@
 (menu-bar-mode -1) ; Disable the menu bar
 (tool-bar-mode -1) ; Disable the tool bar
 
+(setq dired-listing-switches "-hlao")
+
 (provide 'gn-setup-appearance)
