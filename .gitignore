@@ -6,3 +6,6 @@ custom.el
 auto-save-list
 org-roam.db
 projectile-bookmarks.eld
+.org-id-locations
+bookmarks
+history
