@@ -33,7 +33,7 @@
            plain "%?"
            :target (file+head "./en/${slug}.org" "
 #+language: en 
-#+title: ${title}
+#+title: ${title} (WIP)
 #+date: %t
 #+description: ${title}
 ")
@@ -43,7 +43,7 @@
            plain "%?"
            :target (file+head "./ja/${slug}.org" "
 #+language: ja 
-#+title: ${title}
+#+title: ${title} (WIP)
 #+date: %t
 #+description: ${title}
 ")
