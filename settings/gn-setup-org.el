@@ -24,7 +24,7 @@
   (setq org-roam-completion-everywhere t)
   (setq org-roam-capture-templates
 
-        '(("d" "node"
+        '(("n" "node"
            plain "%?"
            :target (file+head "./node/${slug}.org" "#+title: ${title}")
            :immediate-finish
@@ -34,6 +34,7 @@
            :target (file+head "./en/${slug}.org" "
 #+language: en 
 #+title: ${title}
+#+date: %t
 #+description: ${title}
 ")
            :immediate-finish
@@ -43,6 +44,7 @@
            :target (file+head "./ja/${slug}.org" "
 #+language: ja 
 #+title: ${title}
+#+date: %t
 #+description: ${title}
 ")
            :immediate-finish
